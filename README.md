@@ -28,7 +28,7 @@ To keep it simple I only created a table called employee to demonstrate my conce
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
+Below are the list of useful website used :
 * [Stack Overflow](https://stackoverflow.com/)
 * [Python.org](https://docs.python.org/3/)
 
