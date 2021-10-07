@@ -32,16 +32,14 @@ def add_employee():
      dao.create_employee(newEmployee)
      print(f'The employee with firstname: {newEmployee.first_name }, Lastname: {newEmployee.last_name} and  Employee Code: {newEmployee.emp_code} has been Added Successfully!!!\n')
 
-def update_employee():
-    first = input('Enter Firstname of the Employee you would like to Update: ')
-    last = input('Enter Lastname of the Employee you would like to Update: ')
+def transfer_employee():
+   # first = input('Enter Firstname of the Employee you would like to Update: ')
+    code = input('Enter EmployeeCode of the Employee you would like to Transfer: ')
     modify_employee = employee
-    modify_employee.first_name = first
-    modify_employee.last_name = last
-    city = input(f"Enter city you want  {modify_employee.first_name} {modify_employee.last_name} transfered to:  ")
+    city = input(f"Enter city you want the employee with ID: {code} transfered to:  ")
     modify_employee.city = city
-    dao.update_city(modify_employee, modify_employee.city)
-    print(f'\nThe Employee {modify_employee.first_name} {modify_employee.last_name} has been successfully tranfered to {modify_employee.city} .')
+    dao.update_city(modify_employee,city) #modify_employee.city)
+    print(f'\nThe Employee With ID: {code} has been successfully tranfered to {modify_employee.city} .')
 def view_employee_by_city():
     #create an object of the employee class to map the city 
     emp_by_city = employee
@@ -57,7 +55,7 @@ def view_employee_by_city():
 def view_employee_by_empCode():
     #create an object of the employee class and map the employeecode to the 
     emp_by_id = employee
-    print('To search Employees by City you will Have to specify the city')
+    print('To search Employees by EmployeeCode you will Have to specify the Id of the Employee')
     emp_code =input('Enter EmployeeCode: ')
     emp_by_id.emp_code = emp_code
     emp = dao.get_employee_by_code(emp_code)
@@ -69,14 +67,17 @@ def delete_employee():
     #
     print("To delete an employee Provide the following Informations\n")
     code = input("Enter Employee Code: ")
-    first = input('Enter Firstname of the Employee you like to remove: ')
-    last = input('Enter Lastname of the Employee you like to remove: ')
+    #first = input('Enter Firstname of the Employee you like to remove: ')
+    #last = input('Enter Lastname of the Employee you like to remove: ')
     del_employee = employee
-    del_employee.first_name = first
-    del_employee.last_name = last
+    #del_employee.first_name = first
+    #del_employee.last_name = last
     del_employee.emp_code = code
     dao.delete_employee(del_employee)
-    print(f'The employee with firstname {del_employee.first_name}, Lastname {del_employee.last_name} and {del_employee.emp_code} has been deleted successfully!!!')
+    print(f'The employee with EmployeeCode: {del_employee.emp_code} has been deleted successfully!!!')
+def view_employees():
+    staff=dao.view_employees()
+    print(staff)
 def main_menu():
     while True:
         print()
@@ -85,9 +86,10 @@ def main_menu():
             1.   Add Employee
             2.   View Employee by City
             3.   View Employee by EmployeeCode
-            4.   Update an Employee
-            5.   Delete an Employee
-            6.   Quit
+            4.   View All Employees/Staff
+            5.   Update an Employee - Transfer an employee
+            6.   Delete an Employee
+            7.   Quit
             ''')
         # Calls function based on corresponding number that the user inputs
         selection = input('Please enter an action: ')
@@ -99,21 +101,19 @@ def main_menu():
         elif selection == '2':
             # Call the View_employee_by_city function
             view_employee_by_city()
-            
         elif selection == '3':
-            # Call the view_employee_by_empCode
+            # Call the view_employee_by_empCode function
             view_employee_by_empCode()
-             
-
         elif selection == '4':
-            # Call the update_empployee function/method to modify the city of the employee
-            update_employee()
-           
-
+            # Call the view_employees function
+            view_employees()
         elif selection == '5':
+            # Call the update_empployee function/method to modify the city of the employee
+            transfer_employee()
+        elif selection == '6':
             # Call the delete the employee with the specified first and last names.
             delete_employee()
-        elif selection == '6':
+        elif selection == '7':
             print('Thank you for using this Application!!!')
             sys.exit()
 

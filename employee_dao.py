@@ -22,14 +22,19 @@ class employeeDao:
         def update_city(employee,city):
             with conn:
                 cursor.execute("""UPDATE employee SET city=:city
-                WHERE first_name=:first AND last_name=:last""",
-                {'first':employee.first_name, 'last':employee.last_name,'city':city})
+                WHERE  emp_code=:empcode""",
+                {'empcode':employee.emp_code,'city':city})
         #This function Deletes an employees record from the database
         def delete_employee(employee):
             with conn:
-                cursor.execute("DELETE FROM employee WHERE first_name=:first AND last_name=:last AND emp_code=:empcode" ,
-                {'first':employee.first_name,'last':employee.last_name,'empcode':employee.emp_code})
-      
+                cursor.execute("DELETE FROM employee WHERE emp_code=:empcode",
+                {'empcode':employee.emp_code})
+               # return cursor.delete()
+        #This function returns all the employees in the DB
+        def view_employees():
+            with conn:
+                cursor.execute("SELECT * FROM employee")
+                return cursor.fetchall()
         #Create objects of the employee class and call the create employee function
         #employee_1 = employee('empl001','Nelson','Attah',35,'Male',2000.00,'Port-Harcourt','Rivers','Nigeria')
         #employee_2 = employee('empl002','Catherine','Attah',28,'Male',2000.00,'Port-Harcourt','Rivers','Nigeria')
