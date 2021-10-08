@@ -20,7 +20,7 @@ To keep it simple I only created a table called employee to demonstrate my conce
 
 # Development Environment
 
-1. Visual studio Code was the development tool used in developing this App. This is one my favorites because it is lightweight and flexible. 
+1. Visual studio Code was the development tool used in developing this App. This is one of my favorites because it is lightweight and flexible. 
 2. The Python programming language with version 3.7.8 was used to complete this project. It is very easy to use,  unique language and serves as a multi purpose language. I used the sqlite3 Library for Python to connect the app to the DB.
 3. I used GitHub for version control. 
 
